@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Tech | Responsive Design Demo</title>
+    <style>
+        /* === CSS Variables for Theme === */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --background-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --border-radius: 8px;
+        }
+
+        /* === Base Reset & Mobile-First Styles === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            /* Responsive typography using clamp */
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem); 
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* === Semantic Layout Elements === */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: calc(var(--spacing-lg) * 2) var(--spacing-md);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content Grid */
+        main {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .content-layout {
+            display: grid;
+            gap: var(--spacing-lg);
+            /* Default to single column for mobile */
+            grid-template-columns: 1fr; 
+        }
+
+        article {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        article h2 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Sidebar/Aside */
+        aside {
+            background: #e2e8f0;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+        }
+
+        .widget {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .widget:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            margin-top: auto;
+        }
+
+        /* === Media Queries for Responsiveness === */
+
+        /* Tablet Devices (768px and up) */
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+
+            .logo {
+                margin-bottom: 0;
+            }
+
+            .content-layout {
+                /* Switch to a 2-column layout */
+                grid-template-columns: 2fr 1fr; 
+            }
+        }
+
+        /* Desktop Devices (1024px and up) */
+        @media (min-width: 1024px) {
+            .hero {
+                padding: calc(var(--spacing-lg) * 4) var(--spacing-lg);
+            }
+            
+            /* Enhance hover states for mouse users */
+            .nav-links a {
+                padding: var(--spacing-sm) 0;
+                position: relative;
+            }
+
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--primary-color);
+                transition: width 0.3s ease;
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NextGen Tech</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Building the Responsive Web</h1>
+            <p>Seamless experiences across all devices. Resize your browser window to see the layout adapt intelligently to different screen sizes.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="content-layout">
+            <article id="about">
+                <h2>Why Responsive Design?</h2>
+                <p>Responsive Web Design (RWD) ensures that web applications render well on a variety of devices and window or screen sizes. Recent work also considers the viewer proximity as part of the viewing context as an extension for RWD.</p>
+                <br>
+                <p>Using fluid grids, flexible images, and CSS3 media queries, we create a single codebase that adapts perfectly whether you are on a smartphone, tablet, or a massive desktop monitor.</p>
+            </article>
+
+            <aside id="services">
+                <div class="widget">
+                    <h3>Core Technologies</h3>
+                    <ul>
+                        <li>Semantic HTML5</li>
+                        <li>CSS Flexbox & Grid</li>
+                        <li>Relative Units (rem, vw, vh)</li>
+                        <li>Media Queries</li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Latest Updates</h3>
+                    <p>Version 2.0 now includes fluid typography using the CSS <code>clamp()</code> function for smoother scaling.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 NextGen Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
